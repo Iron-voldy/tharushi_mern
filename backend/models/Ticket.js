@@ -46,15 +46,14 @@ const ticketSchema = new mongoose.Schema({
     }],
     ticketNumber: {
         type: String,
-        unique: true,
-        required: true
+        unique: true
     }
 }, {
     timestamps: true
 });
 
 // Generate ticket number before saving
-ticketSchema.pre('save', async function(next) {
+ticketSchema.pre('save', function(next) {
     if (!this.ticketNumber) {
         const date = new Date();
         const year = date.getFullYear().toString().slice(-2);

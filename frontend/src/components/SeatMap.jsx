@@ -16,7 +16,10 @@ const BusLayout = styled.div`
   margin: 2rem 0;
 `;
 
-const Seat = styled.button`
+// Using attrs to filter out custom props
+const Seat = styled.button.attrs(props => ({
+  disabled: props.isBooked
+}))`
   width: 50px;
   height: 50px;
   border: 2px solid ${({ isSelected, isBooked }) =>
@@ -47,7 +50,8 @@ const Legend = styled.div`
   margin-bottom: 2rem;
 `;
 
-const LegendItem = styled.div`
+// Using attrs for legend items as well to handle color and bgColor props
+const LegendItem = styled.div.attrs(() => ({}))`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -66,7 +70,8 @@ function SeatMap({ bus, onSeatSelect }) {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(process.env.FRONTEND_URL || 'http://localhost:5173');
+    // Hardcoded URL instead of using environment variables
+    const newSocket = io('http://localhost:5173');
     setSocket(newSocket);
 
     return () => newSocket.close();
@@ -141,7 +146,7 @@ function SeatMap({ bus, onSeatSelect }) {
             )}
             isBooked={seat.isBooked}
             onClick={() => handleSeatClick(seat)}
-            disabled={seat.isBooked}
+            // No need to add disabled here as it's handled by styled-components attrs
           >
             {seat.seatNumber}
           </Seat>
