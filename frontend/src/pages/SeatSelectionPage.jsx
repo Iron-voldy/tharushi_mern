@@ -1,4 +1,12 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import { getBusDetails } from '../store/slices/busSlice';
+import { bookTicket } from '../store/slices/ticketSlice';
+import SeatMap from '../components/SeatMap';
+import BookingSummary from '../components/BookingSummary';
 
 const PageContainer = styled.div`
   max-width: 1200px;
