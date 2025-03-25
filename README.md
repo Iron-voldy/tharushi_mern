@@ -136,7 +136,7 @@ easybus/
 
 ## 👨‍💻 Contributors
 
-- [Your Name](https://github.com/yourusername)
+- [Hasindu Theekshana](https://github.com/yourusername)
 
 ## 📄 License
 
